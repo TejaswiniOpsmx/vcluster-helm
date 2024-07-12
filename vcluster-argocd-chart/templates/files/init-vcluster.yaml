@@ -1,0 +1,45 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: myissuer
+spec:
+  acme:
+    email: srinivas@opsmx.io
+    preferredChain: ""
+    privateKeySecretRef:
+      name: authtls
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    cert-manager.io/issue-temporary-certificate: "true"
+    cert-manager.io/issuer: myissuer
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  name: vcluster-ingress
+spec:
+  rules:
+  - host: {{ .Values.username }}.{{ .Values.hostname }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: {{ .Values.username }}
+            port:
+              number: 443
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - {{ .Values.username }}.{{ .Values.hostname }}
+    secretName: vcluster-ingress
