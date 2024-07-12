@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: argo-kubectl-vcluster
+  name: {{ .Values.username }}-argo-kubectl-vcluster
 spec:
   template:
     spec:
@@ -9,29 +9,29 @@ spec:
       - name: argo-kubectl-vcluster
         command: ["/script/vcluster-create.sh"]
         args:
-        - {{ .Values.username }}        # Please update the username
+        - {{ .Values.username }}
         env:
         - name: argocdhost
           value: {{ .Values.argocdhostname }}  # Please update the Argocd Ingress Value
-        image: quay.io/opsmxpublic/argo-kubectl-vcluster:v0.20
+        image: quay.io/opsmxpublic/argo-kubectl-vcluster:wyq
         volumeMounts:
         - mountPath: /argocd
           name: argocd
-        - mountPath: /init
-          name: init
         - mountPath: /script
           name: script
+        - mountPath: /values
+          name: values
       serviceAccountName: argocd-application-controller
       volumes:
+      - name: values
+        configMap:
+          name: vcluster-values-yaml
+          items:
+          - key: "values.yaml"
+            path: "values.yaml"
       - name: argocd
         secret:
           secretName: argocd-initial-admin-secret
-      - name: init
-        configMap:
-          name: init-vcluster
-          items:
-          - key: "init-vcluster.yaml"
-            path: "init-vcluster.yaml"
       - name: script
         configMap:
           name: vcluster-create-script
