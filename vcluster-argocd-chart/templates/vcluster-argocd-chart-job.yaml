@@ -13,7 +13,7 @@ spec:
         env:
         - name: argocdhost
           value: {{ .Values.argocdhostname }}  # Please update the Argocd Ingress Value
-        image: quay.io/opsmxpublic/argo-kubectl-vcluster:v1
+        image: quay.io/opsmxpublic/argo-kubectl-vcluster:v0.20
         volumeMounts:
         - mountPath: /argocd
           name: argocd

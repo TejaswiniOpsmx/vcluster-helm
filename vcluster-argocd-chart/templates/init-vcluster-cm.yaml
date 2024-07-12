@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: init-vcluster
 data:
-  myconfig.yaml: |-
+  init-vcluster.yaml: |-
     {{ (.Files.Get "files/init-vcluster.yaml" | indent 4) }}
