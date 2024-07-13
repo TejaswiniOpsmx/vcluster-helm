@@ -20,6 +20,33 @@ data:
     vcluster create $username -n $username --connect=false -f /values/values.yaml
     ingresshost={{ .Values.username}}.{{ .Values.hostname }}
 
+
+
+
+     SECRET_NAME="$username"-kubeconfig-secret
+     # Namespace where the secret is located
+     NAMESPACE="$username"
+
+      # Loop until the secret exists
+      while true; do
+        # Check if the secret exists
+         kubectl get secret $SECRET_NAME -n $NAMESPACE &> /dev/null
+    
+          # If the secret exists, break the loop
+         if [ $? -eq 0 ]; then
+             echo "Secret '$SECRET_NAME' found in namespace '$NAMESPACE'."
+             break
+          else
+           echo "Waiting for secret '$SECRET_NAME' in namespace '$NAMESPACE'..."
+            fi
+    
+    # Wait for 5 seconds before checking again
+            sleep 5
+      done
+
+        echo "The secret '$SECRET_NAME' now exists."
+
+
     #vcluster connect $username -n $username --update-current=false --server=https://"$ingresshost"
     kubectl -n $username get secret 
     kubectl -n $username get secret "$username"-kubeconfig-secret -o jsonpath='{.data.config}' | base64 -d > kubeconfig.yaml
