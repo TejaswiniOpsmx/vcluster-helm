@@ -21,7 +21,7 @@ data:
     ingresshost={{ .Values.username}}.{{ .Values.hostname }}
 
     #vcluster connect $username -n $username --update-current=false --server=https://"$ingresshost"
-
+    kubectl -n $username get secret 
     kubectl -n $username get secret "$username"-kubeconfig-secret -o jsonpath='{.data.config}' | base64 -d > kubeconfig.yaml
     kubectl --kubeconfig=kubeconfig.yaml get ns
     input_yaml=kubeconfig.yaml
