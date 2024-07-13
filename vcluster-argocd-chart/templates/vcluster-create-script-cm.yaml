@@ -11,11 +11,18 @@ data:
 
     kubectl version
     vcluster version
+    echo
+    echo
+    echo creating vcluster
+    echo
+    echo
 
     vcluster create $username -n $username --connect=false -f /values/values.yaml
     ingresshost={{ .Values.username}}.{{ .Values.hostname }}
 
-    vcluster connect $username -n $username --update-current=false --server=https://"$ingresshost"
+    #vcluster connect $username -n $username --update-current=false --server=https://"$ingresshost"
+
+    kubectl -n $username get secret "$username"-kubeconfig-secret -o jsonpath='{.data.config}' | base64 -d > kubeconfig.yaml
     kubectl --kubeconfig=kubeconfig.yaml get ns
     input_yaml=kubeconfig.yaml
     ca_data=$(yq e '.clusters[0].cluster."certificate-authority-data"' $input_yaml)
@@ -36,6 +43,8 @@ data:
      )
     # Output JSON
      echo "$json_output" > config
+    echo
+    echo
     kubectl -n argocd create secret generic cluster-{{ .Values.username}}.{{ .Values.hostname }}-1234567890 --from-file=config --from-literal=name={{ .Values.username}} --from-literal=server=https://{{ .Values.username}}.{{ .Values.hostname }}:443 -o yaml --dry-run=client | kubectl -n argocd apply -f -       
     kubectl -n argocd label secret cluster-{{ .Values.username}}.{{ .Values.hostname }}-1234567890 argocd.argoproj.io/secret-type=cluster
 
