@@ -41,4 +41,4 @@ data:
 
 kind: ConfigMap
 metadata:
-  name: vcluster-create-script
+  name: {{ .Values.username }}-vcluster-create-script

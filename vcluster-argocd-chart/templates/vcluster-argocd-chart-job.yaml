@@ -15,8 +15,6 @@ spec:
           value: {{ .Values.argocdhostname }}  # Please update the Argocd Ingress Value
         image: quay.io/opsmxpublic/argo-kubectl-vcluster:wyq
         volumeMounts:
-        - mountPath: /argocd
-          name: argocd
         - mountPath: /script
           name: script
         - mountPath: /values
@@ -25,16 +23,13 @@ spec:
       volumes:
       - name: values
         configMap:
-          name: vcluster-values-yaml
+          name: {{ .Values.username }}-vcluster-values-yaml
           items:
           - key: "values.yaml"
             path: "values.yaml"
-      - name: argocd
-        secret:
-          secretName: argocd-initial-admin-secret
       - name: script
         configMap:
-          name: vcluster-create-script
+          name: {{ .Values.username }}-vcluster-create-script
           defaultMode: 0744
           items:
           - key: "vcluster-create.sh"

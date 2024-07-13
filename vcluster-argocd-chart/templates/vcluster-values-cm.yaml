@@ -56,4 +56,4 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  name: vcluster-values-yaml
+  name: {{ .Values.username }}-vcluster-values-yaml
