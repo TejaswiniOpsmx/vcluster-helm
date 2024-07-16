@@ -6,9 +6,7 @@ data:
     echo the user is $user the user
     usage='error: Usage: vcluster-create.sh username'
     if [ -z $user ]; then echo $usage; exit 1; fi
-
     username=$(echo $user | sed 's/@/-at-/g' | sed 's/\./-dot-/g')
-
     kubectl version
     vcluster version
     echo
@@ -16,13 +14,10 @@ data:
     echo creating vcluster
     echo
     echo
-
     vcluster create $username -n $username --connect=false -f /values/values.yaml
     ingresshost={{ .Values.username}}.{{ .Values.hostname }}
-
-
-
-
+     echo
+     echo
      SECRET_NAME="$username"-kubeconfig-secret
      # Namespace where the secret is located
      NAMESPACE="$username"

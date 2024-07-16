@@ -13,7 +13,7 @@ spec:
     helm:
       parameters:
       - name: username
-        value: qa-cluster
+        value: qa-vcluster
     path: vcluster-argocd-chart
     repoURL: https://github.com/gopaljayanthi/vcluster-helm
     targetRevision: HEAD

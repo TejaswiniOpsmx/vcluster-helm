@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   generation: 10
-  name: perf-vcluster
+  name: forflamingo-vcluster
   namespace: argocd
 spec:
   destination:
@@ -13,7 +13,7 @@ spec:
     helm:
       parameters:
       - name: username
-        value: perf-vcluster
+        value: forflamingo-vcluster
     path: vcluster-argocd-chart
     repoURL: https://github.com/gopaljayanthi/vcluster-helm
     targetRevision: HEAD
