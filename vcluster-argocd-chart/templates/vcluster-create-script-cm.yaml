@@ -18,7 +18,7 @@ data:
     ingresshost={{ .Values.username}}.{{ .Values.hostname }}
      echo
      echo
-     SECRET_NAME="$username"-kubeconfig-secret
+     SECRET_NAME="$username"-kubeconfig
      # Namespace where the secret is located
      NAMESPACE="$username"
 
