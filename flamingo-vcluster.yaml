@@ -14,6 +14,8 @@ spec:
       parameters:
       - name: username
         value: forflamingo-vcluster
+      - name: hostname
+        value: devops.opsmx.org
     path: vcluster-argocd-chart
     repoURL: https://github.com/gopaljayanthi/vcluster-helm
     targetRevision: HEAD

@@ -14,7 +14,7 @@ data:
     echo creating vcluster
     echo
     echo
-    vcluster create $username -n $username --connect=false -f /values/values.yaml
+    vcluster create --upgrade $username -n $username --connect=false -f /values/values.yaml
     ingresshost={{ .Values.username}}.{{ .Values.hostname }}
      echo
      echo
