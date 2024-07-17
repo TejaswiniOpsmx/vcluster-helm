@@ -1,6 +1,10 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-options: Validate=false
+    argocd.argoproj.io/sync-options: Force=true,Replace=true
   name: {{ .Values.username }}-argo-kubectl-vcluster
 spec:
   template:
