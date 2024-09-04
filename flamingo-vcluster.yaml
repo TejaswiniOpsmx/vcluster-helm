@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   generation: 10
-  name: forflamingo-vcluster
+  name: flamingo-vcluster
   namespace: argocd
 spec:
   destination:
@@ -13,9 +13,9 @@ spec:
     helm:
       parameters:
       - name: username
-        value: forflamingo-vcluster
+        value: flamingo-vcluster
       - name: hostname
-        value: gartner.opsmx.org
+        value: gartner.opsmx.net
     path: vcluster-argocd-chart
     repoURL: https://github.com/gopaljayanthi/vcluster-helm
     targetRevision: HEAD
