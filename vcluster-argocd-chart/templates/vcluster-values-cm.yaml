@@ -30,7 +30,7 @@ data:
           nginx.ingress.kubernetes.io/backend-protocol: HTTPS
           nginx.ingress.kubernetes.io/ssl-passthrough: "true"
           nginx.ingress.kubernetes.io/ssl-redirect: "true"
-          cert-manager.io/cluster-issuer: {{ .Values.hostname }}
+          cert-manager.io/cluster-issuer: {{ .Values.clusterissuer }}
           #kubernetes.io/ingress.class: nginx
       # Ingress TLS configuration
         spec:
