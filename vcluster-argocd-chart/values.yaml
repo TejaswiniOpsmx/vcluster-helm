@@ -1,3 +1,3 @@
 username: flamingo
 hostname: gartner.opsmx.net
-argocdhostname: argocd.jpmc.opsmx.net
+clusterissuer: letsencrypt
