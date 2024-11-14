@@ -14,7 +14,10 @@ spec:
       parameters:
       - name: username
         value: dev-vcluster
-        clusterissuer: letsencrypt-isdargo08-argocd
+      - name: hostname
+        value: argotest.opsmx.net
+      - name: clusterissuer
+        value: letsencrypt-isdargo08-argocd
     path: vcluster-argocd-chart
     repoURL: https://github.com/TejaswiniOpsmx/vcluster-helm
     targetRevision: ryzon7
