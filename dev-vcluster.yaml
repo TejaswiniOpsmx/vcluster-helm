@@ -15,8 +15,8 @@ spec:
       - name: username
         value: dev-vcluster
     path: vcluster-argocd-chart
-    repoURL: https://github.com/gopaljayanthi/vcluster-helm
-    targetRevision: HEAD
+    repoURL: https://github.com/TejaswiniOpsmx/vcluster-helm
+    targetRevision: ryzon7
   syncPolicy:
     automated: {}
     syncOptions:
