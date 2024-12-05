@@ -26,7 +26,7 @@ spec:
             - name: username
               value: '{{username}}'
             - name: hostname
-              value: argocd.opsmx.net
+              value: tcbx.opsmx.org
             - name: clusterissuer
               value: letsencrypt-tcb-argocd
       destination:
