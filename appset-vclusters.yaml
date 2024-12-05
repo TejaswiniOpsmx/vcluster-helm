@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata: 
+  name: vcluster-applicationset
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: argocd3-vcluster
+          - username: argocd3-vcluster
+        elements:
+          - name: argocd4-vcluster
+          - username: argocd4-vcluster
+  template:
+    metadata:
+      name: "{{name}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/TejaswiniOpsmx/vcluster-helm
+        targetRevision: custtest
+        path: vcluster-argocd-chart
+        helm: 
+          parameters:
+            - name: username
+              value: '{{username}}'
+            - name: hostname
+              value: argocd.opsmx.net
+            - name: clusterissuer
+              value: letsencrypt-tcb-argocd
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        automated: {}
