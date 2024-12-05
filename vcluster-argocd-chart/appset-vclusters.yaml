@@ -14,7 +14,7 @@ spec:
           - username: argocd4-vcluster
   template:
     metadata:
-      name: "{{name}}"
+      name: '{{values.name}}'
     spec:
       project: default
       source:
@@ -24,7 +24,7 @@ spec:
         helm: 
           parameters:
             - name: username
-              value: '{{username}}'
+              value: '{{values.username}}'
             - name: hostname
               value: tcbx.opsmx.org
             - name: clusterissuer
