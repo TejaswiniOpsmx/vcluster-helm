@@ -4,5 +4,5 @@
 
 clusters:
   count: 32
-  prefix: argocd
+  prefix: tcbx
   namespaceSuffix: -namespace
