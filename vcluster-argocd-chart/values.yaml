@@ -1,6 +1,6 @@
-username: argocd2
+username: argocd
 hostname: tcbx.opsmx.org
-clusterissuer: letsencrypt-tcb-argocd
+#clusterissuer: letsencrypt-tcb-argocd
 
 #clusters:
  # count: 32
