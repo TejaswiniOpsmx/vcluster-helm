@@ -1,8 +1,8 @@
-#username: argocd2
-#hostname: tcbx.opsmx.org
-#clusterissuer: letsencrypt-tcb-argocd
+username: argocd2
+hostname: tcbx.opsmx.org
+clusterissuer: letsencrypt-tcb-argocd
 
-clusters:
-  count: 32
-  prefix: tcbx
-  namespaceSuffix: -namespace
+#clusters:
+ # count: 32
+  #prefix: tcbx
+  #namespaceSuffix: -namespace
