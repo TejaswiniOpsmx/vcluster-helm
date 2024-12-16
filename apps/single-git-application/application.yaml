@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/NaveenBalagouni/argocd-training.git'
-    path: git-source
+    repoURL: 'https://github.com/TejaswiniOpsmx/vcluster-helm.git'
+    path: applcation-sources/single-git-resources
     targetRevision: HEAD
   destination:
     server: 'https://kubernetes.default.svc'
